@@ -1,8 +1,8 @@
 # vim: set fileencoding=utf-8
 """
-pythoneda/shared/runtime/events/lifecycle/__init__.py
+pythoneda/shared/runtime/events/infrastructure/__init__.py
 
-This file ensures pythoneda.shared.runtime.events.lifecycle is a namespace.
+This file ensures pythoneda.shared.runtime.events.infrastructure is a namespace.
 
 Copyright (C) 2024-today rydnr's pythoneda-shared-runtime/lifecycle-events-infrastructure
 

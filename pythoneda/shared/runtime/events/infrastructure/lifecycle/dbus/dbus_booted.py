@@ -1,8 +1,8 @@
 # vim: set fileencoding=utf-8
 """
-pythoneda/shared/runtime/events/lifecycle/infrastructure/dbus/dbus_boot_requested.py
+pythoneda/shared/runtime/events/infrastructure/lifecycle/dbus/dbus_booted.py
 
-This file defines the DbusBootRequested class.
+This file defines the DbusBooted class.
 
 Copyright (C) 2023-today rydnr's pythoneda-shared-runtime/lifecycle-events-infrastructure
 
@@ -24,18 +24,18 @@ from dbus_next.service import ServiceInterface, signal
 import json
 from pythoneda.shared import BaseObject
 from pythoneda.shared.runtime.events.lifecycle import BootRequested
-from pythoneda.shared.runtime.events.lifecycle.infrastructure.dbus import DBUS_PATH
+from pythoneda.shared.runtime.events.infrastructure.lifecycle.dbus import DBUS_PATH
 from typing import List
 
 
-class DbusBootRequested(BaseObject, ServiceInterface):
+class DbusBooted(BaseObject, ServiceInterface):
     """
-    D-Bus interface for BootRequested.
+    D-Bus interface for Booted.
 
-    Class name: DbusBootRequested
+    Class name: DbusBooted
 
     Responsibilities:
-        - Define the d-bus interface for the CommittedChangesPushed event.
+        - Define the d-bus interface for the Booted event.
 
     Collaborators:
         - None
@@ -43,14 +43,14 @@ class DbusBootRequested(BaseObject, ServiceInterface):
 
     def __init__(self):
         """
-        Creates a new DbusBootRequested.
+        Creates a new DbusBooted.
         """
-        super().__init__("Pythoneda_Shared_Runtime_Events_Lifecycle_BootRequested")
+        super().__init__("Pythoneda_Shared_Runtime_Events_Lifecycle_Booted")
 
     @signal()
-    def BootRequested(self, defUrl: "s"):
+    def Booted(self, defUrl: "s"):
         """
-        Defines the BootRequested d-bus signal.
+        Defines the Booted d-bus signal.
         :param defUrl: The url of the definition repository.
         :type defUrl: str
         """
@@ -66,11 +66,11 @@ class DbusBootRequested(BaseObject, ServiceInterface):
         return DBUS_PATH
 
     @classmethod
-    def transform(cls, event: BootRequested) -> List[str]:
+    def transform(cls, event: Booted) -> List[str]:
         """
         Transforms given event to signal parameters.
         :param event: The event to transform.
-        :type event: pythoneda.shared.runtime.events.lifecycle.BootRequested
+        :type event: pythoneda.shared.runtime.events.lifecycle.Booted
         :return: The event information.
         :rtype: List[str]
         """
@@ -81,27 +81,27 @@ class DbusBootRequested(BaseObject, ServiceInterface):
         ]
 
     @classmethod
-    def sign(cls, event: BootRequested) -> str:
+    def sign(cls, event: Booted) -> str:
         """
         Retrieves the signature for the parameters of given event.
         :param event: The domain event.
-        :type event: pythoneda.shared.runtime.events.lifecycle.BootRequested
+        :type event: pythoneda.shared.runtime.events.lifecycle.Booted
         :return: The signature.
         :rtype: str
         """
         return "sss"
 
     @classmethod
-    def parse(cls, message: Message) -> BootRequested:
+    def parse(cls, message: Message) -> Booted:
         """
-        Parses given d-bus message containing a BootRequested event.
+        Parses given d-bus message containing a Booted event.
         :param message: The message.
         :type message: dbus_next.Message
         :return: The BootRequested event.
-        :rtype: pythoneda.shared.runtime.events.lifecycle.BootRequested
+        :rtype: pythoneda.shared.runtime.events.lifecycle.Booted
         """
         def_url, event_id, prev_event_ids = message.body
-        return BootRequested(
+        return Booted(
             def_url,
             None,
             event_id,
