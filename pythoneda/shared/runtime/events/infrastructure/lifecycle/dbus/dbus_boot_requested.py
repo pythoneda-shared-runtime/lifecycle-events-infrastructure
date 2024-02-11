@@ -75,7 +75,7 @@ class DbusBootRequested(BaseObject, ServiceInterface):
         :rtype: List[str]
         """
         return [
-            event.def_url,
+            event.url,
             event.id,
             json.dumps(event.previous_event_ids),
         ]
@@ -100,9 +100,9 @@ class DbusBootRequested(BaseObject, ServiceInterface):
         :return: The BootRequested event.
         :rtype: pythoneda.shared.runtime.events.lifecycle.BootRequested
         """
-        def_url, event_id, prev_event_ids = message.body
+        url, event_id, prev_event_ids = message.body
         return BootRequested(
-            def_url,
+            url,
             None,
             event_id,
             json.loads(prev_event_ids),
