@@ -76,8 +76,8 @@ class DbusBooted(BaseObject, ServiceInterface):
         """
         return [
             event.def_url,
-            event.id,
             json.dumps(event.previous_event_ids),
+            event.id,
         ]
 
     @classmethod
@@ -100,12 +100,11 @@ class DbusBooted(BaseObject, ServiceInterface):
         :return: The BootRequested event.
         :rtype: pythoneda.shared.runtime.events.lifecycle.Booted
         """
-        def_url, event_id, prev_event_ids = message.body
+        def_url, prev_event_ids, event_id = message.body
         return Booted(
             def_url,
-            None,
-            event_id,
             json.loads(prev_event_ids),
+            event_id,
         )
 
 
